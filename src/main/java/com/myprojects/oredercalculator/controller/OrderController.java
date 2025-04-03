@@ -16,7 +16,7 @@ import com.myprojects.oredercalculator.repository.OrderRepository;
 public class OrderController {
 
     @Autowired
-    private OrderRepository orderRepository;
+    // private OrderRepository orderRepository;
 
     @GetMapping("/latest")
     public Order getLatestOrder() {
