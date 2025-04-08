@@ -1,8 +1,8 @@
-package com.myprojects.oredercalculator.repository;
+package com.myprojects.ordercalculator.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.myprojects.oredercalculator.model.Order;
+import com.myprojects.ordercalculator.model.Order;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {

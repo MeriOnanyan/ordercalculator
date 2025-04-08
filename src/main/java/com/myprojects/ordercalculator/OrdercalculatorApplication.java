@@ -1,13 +1,13 @@
-package com.myprojects.oredercalculator;
+package com.myprojects.ordercalculator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OredercalculatorApplication {
+public class OrdercalculatorApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OredercalculatorApplication.class, args);
+		SpringApplication.run(OrdercalculatorApplication.class, args);
 	}
 
 }

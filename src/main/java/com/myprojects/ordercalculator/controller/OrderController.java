@@ -1,4 +1,4 @@
-package com.myprojects.oredercalculator.controller;
+package com.myprojects.ordercalculator.controller;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.myprojects.oredercalculator.model.Order;
-import com.myprojects.oredercalculator.repository.OrderRepository;
+import com.myprojects.ordercalculator.model.Order;
+import com.myprojects.ordercalculator.repository.OrderRepository;
 
 @RestController
 @RequestMapping("/orders")
@@ -21,9 +21,8 @@ public class OrderController {
     @GetMapping("/latest")
     public Order getLatestOrder() {
         List<Order> orders = orderRepository.findAll();
-
-        int lastIndex = orders.size() - 1;
-        return orders.get(lastIndex);
+    
+        return orders.isEmpty() ? null : orders.get(orders.size() - 1);
     }
 
     @GetMapping("/sample")

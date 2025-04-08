@@ -1,4 +1,4 @@
-package com.myprojects.oredercalculator.model;
+package com.myprojects.ordercalculator.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,5 +27,6 @@ public class LineItem {
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
+
 
 }

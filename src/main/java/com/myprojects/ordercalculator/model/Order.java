@@ -1,4 +1,4 @@
-package com.myprojects.oredercalculator.model;
+package com.myprojects.ordercalculator.model;
 
 import java.time.LocalDate;
 import java.util.List;

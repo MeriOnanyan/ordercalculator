@@ -1,10 +1,10 @@
-package com.myprojects.oredercalculator;
+package com.myprojects.ordercalculator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OredercalculatorApplicationTests {
+class ordercalculatorApplicationTests {
 
 	@Test
 	void contextLoads() {
