@@ -11,11 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter 
-@Setter
 @Data
 @Entity
 @Table(name="orders")
@@ -29,5 +25,5 @@ public class Order {
     private LocalDate createDate;
     
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<LineItem> lineItem;
+    private List<LineItem> lineItems;
 }
