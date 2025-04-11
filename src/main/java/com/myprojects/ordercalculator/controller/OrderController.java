@@ -72,11 +72,17 @@ public class OrderController {
         return orderRepository.save(orderItem);
     }
     
-    @PutMapping("/{orderId}")
-    public ResponseEntity<OrderRequest> updateOrder(@PathVariable Long orderId, @RequestBody OrderUpdate dto) {
-        OrderRequest updated = orderService.updateOrder(orderId, dto); 
-        return ResponseEntity.ok(updated);
-    }
+    // @PutMapping("/{orderId}")
+    // public ResponseEntity<OrderRequest> updateOrder(@PathVariable Long orderId, @RequestBody OrderUpdate dto) {
+    //     OrderRequest updated = orderService.updateOrder(orderId, dto); 
+    //     return ResponseEntity.ok(updated);
+    // }
+
+    @DeleteMapping("/{orderId}")
+    public ResponseEntity<String> deleteOrder(@PathVariable Long orderId) {
+        orderService.deleteOrder(orderId);
+        return ResponseEntity.ok("Order deleted successfully");
+}
 
     @GetMapping("/sample")
     public Order sampleOrder() {
