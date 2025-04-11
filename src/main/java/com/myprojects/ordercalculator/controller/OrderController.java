@@ -5,17 +5,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myprojects.ordercalculator.dto.LineItemRequest;
 import com.myprojects.ordercalculator.dto.OrderRequest;
+import com.myprojects.ordercalculator.dto.OrderUpdate;
 import com.myprojects.ordercalculator.model.LineItem;
 import com.myprojects.ordercalculator.model.Order;
 import com.myprojects.ordercalculator.repository.OrderRepository;
+import com.myprojects.ordercalculator.service.OrderService;
 
 @RestController
 @RequestMapping("/orders")
@@ -23,6 +29,9 @@ public class OrderController {
 
     @Autowired
     private OrderRepository orderRepository;
+    
+    @Autowired
+    private OrderService orderService;
 
     @GetMapping("/latest")
     public Order getLatestOrder() {
@@ -61,6 +70,12 @@ public class OrderController {
         }
 
         return orderRepository.save(orderItem);
+    }
+    
+    @PutMapping("/{orderId}")
+    public ResponseEntity<OrderRequest> updateOrder(@PathVariable Long orderId, @RequestBody OrderUpdate dto) {
+        OrderRequest updated = orderService.updateOrder(orderId, dto); 
+        return ResponseEntity.ok(updated);
     }
 
     @GetMapping("/sample")
