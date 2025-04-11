@@ -27,4 +27,17 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LineItem> lineItems;
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SharedExpense> sharedExpenses;
+
+    public void addSharedExpense(SharedExpense expense) {
+        sharedExpenses.add(expense);
+        expense.setOrder(this);
+    }
+    
+    public void removeSharedExpense(SharedExpense expense) {
+        sharedExpenses.remove(expense);
+        expense.setOrder(null);
+    }
+
 }
