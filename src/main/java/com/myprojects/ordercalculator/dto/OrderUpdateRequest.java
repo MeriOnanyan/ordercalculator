@@ -1,8 +1,9 @@
 package com.myprojects.ordercalculator.dto;
 
+import lombok.Data;
 
-public class OrderUpdate {
-    private Long orderId;
+@Data
+public class OrderUpdateRequest {
     private String name;
     private String description;
 

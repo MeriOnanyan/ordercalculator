@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.myprojects.ordercalculator.dto.LineItemRequest;
 import com.myprojects.ordercalculator.dto.OrderRequest;
-import com.myprojects.ordercalculator.dto.OrderUpdate;
+import com.myprojects.ordercalculator.dto.OrderUpdateRequest;
 import com.myprojects.ordercalculator.model.LineItem;
 import com.myprojects.ordercalculator.model.Order;
 import com.myprojects.ordercalculator.repository.OrderRepository;
@@ -72,11 +72,11 @@ public class OrderController {
         return orderRepository.save(orderItem);
     }
     
-    // @PutMapping("/{orderId}")
-    // public ResponseEntity<OrderRequest> updateOrder(@PathVariable Long orderId, @RequestBody OrderUpdate dto) {
-    //     OrderRequest updated = orderService.updateOrder(orderId, dto); 
-    //     return ResponseEntity.ok(updated);
-    // }
+    @PutMapping("/{orderId}")
+    public ResponseEntity<Order> updateOrder(@PathVariable Long orderId, @RequestBody OrderUpdateRequest dto) {
+        Order updated = orderService.updateOrder(orderId, dto); 
+        return ResponseEntity.ok(updated);
+    }
 
     @DeleteMapping("/{orderId}")
     public ResponseEntity<String> deleteOrder(@PathVariable Long orderId) {
