@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.myprojects.ordercalculator.dto.LineItemRequest;
 import com.myprojects.ordercalculator.dto.OrderRequest;
 import com.myprojects.ordercalculator.dto.OrderUpdateRequest;
+import com.myprojects.ordercalculator.dto.SharedExpenseRequest;
 import com.myprojects.ordercalculator.model.LineItem;
 import com.myprojects.ordercalculator.model.Order;
 import com.myprojects.ordercalculator.repository.OrderRepository;
@@ -82,7 +83,14 @@ public class OrderController {
     public ResponseEntity<String> deleteOrder(@PathVariable Long orderId) {
         orderService.deleteOrder(orderId);
         return ResponseEntity.ok("Order deleted successfully");
-}
+    }
+
+    @PostMapping("/{orderId}/shared-expenses")
+    public ResponseEntity<?> setSharedExpenses(@PathVariable Long orderId,@RequestBody List<SharedExpenseRequest> sharedExpenses) {
+        orderService.setSharedExpenses(orderId, sharedExpenses);
+        return ResponseEntity.ok("Shared expenses set successfully.");
+    }
+
 
     @GetMapping("/sample")
     public Order sampleOrder() {
