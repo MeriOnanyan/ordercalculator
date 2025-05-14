@@ -1,5 +1,7 @@
 package com.myprojects.ordercalculator.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,6 +17,7 @@ public class SharedExpense {
     private String name;
     private BigDecimal amount;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
