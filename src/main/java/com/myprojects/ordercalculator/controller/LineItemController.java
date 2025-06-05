@@ -2,6 +2,7 @@ package com.myprojects.ordercalculator.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.myprojects.ordercalculator.dto.LineItemRequest;
 import com.myprojects.ordercalculator.model.LineItem;
+import com.myprojects.ordercalculator.model.Order;
 import com.myprojects.ordercalculator.repository.LineItemRepository;
 import com.myprojects.ordercalculator.repository.OrderRepository;
 
@@ -52,6 +54,21 @@ public class LineItemController {
             lineItemRepository.save(lineItem); 
 
             return ResponseEntity.ok("LineItem added to Order " + orderId);
+        }).orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{lineItemId}")
+    public ResponseEntity<?> deleteLineItem(@PathVariable Long lineItemId) {
+        return lineItemRepository.findById(lineItemId).map(lineItem -> {
+            Order order = lineItem.getOrder();
+
+            if (order != null) {
+                order.getLineItems().remove(lineItem); // remove from the list
+            }
+
+            lineItemRepository.delete(lineItem); // delete from DB
+
+            return ResponseEntity.ok("LineItem deleted successfully.");
         }).orElse(ResponseEntity.notFound().build());
     }
 }
